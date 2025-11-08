@@ -225,4 +225,4 @@ with gr.Blocks(theme=custom_theme, title="AI Multi-Tool: FSRCNN & Translator") a
             clear_btn2.click(fn=lambda: ("", "English", "French", ""), outputs=[input_text, src_lang, tgt_lang, output_text])
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(server_name="0.0.0.0", server_port=7860)
