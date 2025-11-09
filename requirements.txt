@@ -8,3 +8,4 @@ torchvision
 Pillow
 natsort
 huggingface_hub
+prometheus_client

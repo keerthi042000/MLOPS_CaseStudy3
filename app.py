@@ -7,6 +7,7 @@ import torch
 from torch import nn
 import gradio as gr
 from huggingface_hub import InferenceClient
+from metrics import observe_endpoint
 
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -125,6 +126,7 @@ def maybe_downscale_for_memory(img_rgb: np.ndarray, max_pixels: int = 8_000_000)
     return cv2.resize(img_rgb, (new_w, new_h), interpolation=cv2.INTER_AREA)
 
 
+@observe_endpoint('upscale_ui')
 def upscale_ui(image: np.ndarray, scale_factor: int, method: str):
     if image is None:
         return None, "Please upload an image."
@@ -160,6 +162,7 @@ lang_map = {
     # You can add full map from your existing file if needed
 }
 
+@observe_endpoint('translate_text')
 def translate_text(text, src_lang, tgt_lang):
     if not text.strip():
         return "Please enter any text to translate 😃"
